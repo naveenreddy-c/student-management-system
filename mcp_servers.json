@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "TiDB": {
+      "type": "stdio",
+      "command": "D:/naveen/Java/student-management-system/.venv/Scripts/uvx",
+      "args": ["--from", "pytidb[mcp]", "tidb-mcp-server"],
+      "env": {
+        "TIDB_HOST": "gateway01.us-east-1.prod.aws.tidbcloud.com",
+        "TIDB_PORT": "4000",
+        "TIDB_USERNAME": "ysWgSGU9zsGPWSu.root",
+        "TIDB_PASSWORD": "root",
+        "TIDB_DATABASE": "student_management"
+      }
+    }
+  }
+}

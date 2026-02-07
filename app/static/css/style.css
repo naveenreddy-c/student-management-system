@@ -1,0 +1,5 @@
+/* Custom utilities */
+.h-screen-minus-nav {
+    height: calc(100vh - 4rem);
+    /* Adjust based on nav height */
+}

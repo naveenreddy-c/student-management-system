@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .h-screen-minus-nav {
+            min-height: calc(100vh - 4rem);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 font-sans antialiased text-slate-800">
+
+    <nav class="bg-indigo-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="{{ url_for('dashboard') }}"
+                class="text-2xl font-bold tracking-tight hover:text-indigo-200 transition">SMS</a>
+            <div class="flex items-center space-x-4">
+                {% if current_user.is_authenticated %}
+                <span class="text-indigo-200 text-sm hidden md:inline">Logged in as <strong class="text-white">{{
+                        current_user.username }}</strong></span>
+                <a href="{{ url_for('logout') }}"
+                    class="bg-indigo-800 hover:bg-indigo-900 text-white text-sm font-medium py-2 px-4 rounded transition shadow-sm">Logout</a>
+                {% else %}
+                <a href="{{ url_for('login') }}"
+                    class="text-white hover:text-indigo-200 text-sm font-medium transition">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-8 px-4 pb-12">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="max-w-4xl mx-auto mb-6 space-y-2">
+            {% for category, message in messages %}
+            <div class="px-4 py-3 rounded shadow-sm border-l-4 flex items-center
+                        {% if category == 'success' %} bg-green-50 border-green-500 text-green-700 {% endif %}
+                        {% if category == 'error' %} bg-red-50 border-red-500 text-red-700 {% endif %}
+                        {% if category == 'info' %} bg-blue-50 border-blue-500 text-blue-700 {% endif %}">
+                <span class="font-medium">{{ message }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+
+</html>

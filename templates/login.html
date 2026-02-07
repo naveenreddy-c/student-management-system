@@ -1,72 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Student Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .login-container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 400px;
-        }
-        .login-container h2 {
-            color: #333;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .form-control {
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        .btn-login {
-            width: 100%;
-            border-radius: 8px;
-            padding: 10px;
-            font-weight: bold;
-        }
-        .alert {
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-<div class="login-container">
-    <h2>Student Management</h2>
-    
-    {% if error %}
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ error }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    {% endif %}
-    
-    <form method="post">
-        <input type="text" name="username" class="form-control" placeholder="Username" required>
-        <input type="password" name="password" class="form-control" placeholder="Password" required>
-        <button type="submit" class="btn btn-primary btn-login">Login</button>
-    </form>
-    
-    <hr>
-    <p style="text-align: center; font-size: 12px; color: #666;">
-        Demo Credentials:<br>
-        <strong>Admin:</strong> admin / admin<br>
-        <strong>Staff:</strong> staff / staff
-    </p>
-</div>
+{% extends "base.html" %}
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+{% block content %}
+<div class="flex justify-center items-center h-screen-minus-nav">
+    <div class="w-full max-w-md">
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden border border-slate-200">
+            <div class="bg-indigo-600 px-8 py-6 text-center">
+                <h2 class="text-white text-2xl font-bold">Welcome Back</h2>
+                <p class="text-indigo-200 text-sm mt-1">Sign in to your account</p>
+            </div>
+            <form method="POST" class="px-8 py-8 space-y-6">
+                <div>
+                    <label class="block text-slate-700 text-sm font-bold mb-2 ml-1" for="username">Username</label>
+                    <input
+                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                        id="username" name="username" type="text" placeholder="Enter username" required autofocus>
+                </div>
+                <div>
+                    <label class="block text-slate-700 text-sm font-bold mb-2 ml-1" for="password">Password</label>
+                    <input
+                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                        id="password" name="password" type="password" placeholder="••••••••" required>
+                </div>
+                <div>
+                    <button
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-200 ease-in-out shadow-md"
+                        type="submit">
+                        Sign In
+                    </button>
+                </div>
+            </form>
+            <div class="bg-slate-50 px-8 py-4 border-t border-slate-100 text-center">
+                <p class="text-xs text-slate-500">Student Management System &copy; 2026</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
